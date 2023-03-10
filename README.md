@@ -31,7 +31,7 @@ Insights of the Analysis and the outcome :
 - Food delivery time analysis can also help businesses to make data-driven decisions about pricing, promotions, and other aspects of their operations, based on factors that affect delivery time.
 
 - By analyzing delivery time data over time, businesses can identify trends and patterns, such as seasonal fluctuations or changes in customer preferences, that can inform their business strategies.
-- 
+
 - Suggestions for business implementation: Base on the analysis to  recommendation how the business can use this analysis to improve delivery time, such as optimizing routes, adjusting staffing levels, or providing real-time updates to customers.
 
 
