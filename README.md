@@ -15,7 +15,8 @@
 
 Description of dataset:
 
-Dataset of over 47K rows with over 20 coloumns to analyse estimated Food delivery time analysis.Analysis of the dataset:To identify which internal and  external factors have the most significant impact on delivery time.
+Dataset of over 47K rows with over 20 coloumns to analyse estimated Food delivery time analysis.
+Analysis of the dataset:To identify what are the internal and external factors that have the most significant impact on delivery time.
 
 
 Insights of the Analysis and the outcome :
@@ -76,30 +77,24 @@ SELECT
 FROM orders
 GROUP BY order_time, time_period;
 
--- Join with the factors_table to analyze the impact of factors on delivery time
-SELECT
-  t.time_period,
-  t.order_time,
-  t.num_orders,
-  AVG(EXTRACT(epoch FROM (order_picked - order_time)) / 60) AS avg_delivery_time,
-  factors.ord_type,
-  factors.weather,
-  factors.traffic,
-  factors.city
-FROM (
-  SELECT
-    order_time,
-    CASE 
-      WHEN order_time BETWEEN '08:00:00' AND '10:59:59' THEN 'Peak Hours'
-      WHEN order_time BETWEEN '11:00:00' AND '15:59:59' THEN 'Lunch Hours'
-      ELSE 'Non-Peak Hours'
-    END AS time_period,
-    COUNT(*) AS num_orders
-  FROM orders
-  GROUP BY order_time, time_period
-) t
-JOIN factors_table factors ON t.order_time = factors.order_time
-GROUP BY t.time_period, t.order_time, t.num_orders, factors.ord_type, factors.weather, factors.traffic, factors.city;
+--To find the demand and relationship between time_period,total delivery & avg delivery time:
+
+WITH time as
+  (SELECT  min_taken,mul_delivery,
+  CASE 
+  WHEN order_time BETWEEN '10:00:00' AND '12:00:00' THEN 'Lunch Hour'
+    WHEN order_time BETWEEN '17:00:00' AND '20:00:00' THEN 'Peak Hour'
+	WHEN order_time BETWEEN '21:00:00' AND '24:00:00' THEN 'Happy Hour'
+    ELSE 'Non-Peak Hours'
+  END AS time_period
+ FROM orders)
+ SELECT time_period, count(time_period) AS total_deliveries,
+ ROUND (AVG(min_taken), 1) AS avg_time
+ FROM time
+ GROUP BY time_period
+ ORDER BY 3 DESC;
+
+
 
 Data Import from .CSV file to post PostgresSQL using SQL Command line:
 #### SQL Command Line :
