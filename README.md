@@ -49,22 +49,22 @@ Data Normalization and Data structuring :
 
 Queries executed that were used to manipulate data and create the necessary tables for the food delivery time analysis in PostgresSQL not limited to :
 
--CREATE TABLE: Used to create a new table in the database
-INSERT INTO: Used to insert new data into a table
-SELECT: Used to retrieve data from a table
-WHERE: Used to filter data based on specified conditions
-JOIN: Used to combine rows from two or more tables based on a related column between them
-GROUP BY: Used to group data based on one or more columns
-ORDER BY: Used to sort data in ascending or descending order based on one or more columns
-UPDATE: Used to modify existing data in a table
-ALTER TABLE: Used to add, modify, or delete columns in an existing table
-DROP TABLE: Used to delete an entire table from the database
+- CREATE TABLE: Used to create a new table in the database
+- INSERT INTO: Used to insert new data into a table
+- SELECT: Used to retrieve data from a table
+- WHERE: Used to filter data based on specified conditions
+- JOIN: Used to combine rows from two or more tables based on a related column between them
+- GROUP BY: Used to group data based on one or more columns
+- ORDER BY: Used to sort data in ascending or descending order based on one or more columns
+- UPDATE: Used to modify existing data in a table
+- ALTER TABLE: Used to add, modify, or delete columns in an existing table
+- DROP TABLE: Used to delete an entire table from the database
 
 
 Sample Queries :
 
 --ALTER TABLE orders ADD COLUMN day_of_week varchar(10);
-UPDATE orders SET day_of_week = to_char(order_date, 'Day');
+--UPDATE orders SET day_of_week = to_char(order_date, 'Day');
 
 --CREATE TABLE orders (
     id serial PRIMARY KEY,
